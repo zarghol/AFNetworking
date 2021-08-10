@@ -25,14 +25,31 @@
 
 import PackageDescription
 
-let package = Package(name: "AFNetworking",
-                      platforms: [.macOS(.v10_10),
-                                  .iOS(.v9),
-                                  .tvOS(.v9),
-                                  .watchOS(.v2)],
-                      products: [.library(name: "AFNetworking",
-                                          type: .dynamic,
-                                          targets: ["AFNetworking"])],
-                      targets: [.target(name: "AFNetworking",
-                                        path: "AFNetworking",
-                                        publicHeadersPath: "")])
+let package = Package(
+    name: "AFNetworking",
+    platforms: [
+        .macOS(.v10_10),
+        .iOS(.v9),
+        .tvOS(.v9),
+        .watchOS(.v2)
+    ],
+    products: [
+        .library(
+            name: "AFNetworking",
+            type: .dynamic,
+            targets: ["AFNetworking"]
+        )
+    ],
+    targets: [
+        .target(
+            name: "AFNetworking",
+            path: "AFNetworking",
+            publicHeadersPath: "",
+            linkerSettings: [
+                .unsafeFlags([
+                    "-current_version 1.0.0"
+                ])
+            ]
+        )
+    ]
+)
